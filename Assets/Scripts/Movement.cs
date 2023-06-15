@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody _rb;
-    [SerializeField] float _speed;
+    float _speed = 5;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -14,6 +14,6 @@ public class Movement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        _rb.velocity = new Vector3(horizontal * _speed, 0f, vertical * _speed);
+        _rb.velocity = new Vector3(horizontal * _speed, _rb.velocity.y, vertical * _speed);
     }
 }
