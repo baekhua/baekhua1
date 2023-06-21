@@ -9,8 +9,9 @@ public class AggressiveMonster : MonoBehaviour
     float _speed = 6;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if(collision.collider.CompareTag("Player"))
         {
+            Attack();
             Debug.Log("플레이어에게 데미지가 들어갑니다.");
         }
     }
@@ -18,11 +19,7 @@ public class AggressiveMonster : MonoBehaviour
     {
         if(_monster != null)
         {
-            if(Vector3.Distance(_player.position, _monster.position) <= 3)
-            {
-                Invoke("Attack", 1f);
-            }
-            else if(Vector3.Distance(_player.position, _monster.position) < 50)
+            if(Vector3.Distance(_player.position, _monster.position) < 50)
             {
                 FollowPlayer();
             }
@@ -40,9 +37,6 @@ public class AggressiveMonster : MonoBehaviour
     }
     void Attack()
     {
-        // 1초마다 플레이어에게 공격할 행동
-        // 공격은 콜라이더로 하기 때문에
-        // 몬스터의 트랜스폼 포지션과 플레이어의 트랜스폼 포지션의 거리가 1이 되었다가
-        // 다시 원래 위치가 되는 로직
+        
     }
 }

@@ -25,6 +25,6 @@ public class PassiveMonster : MonoBehaviour
         Vector3 moveVector = (_player.position - _monster.position);
         Vector3 dirVector = moveVector.normalized;
         Vector3 lastVector = dirVector * _speed;
-        _monster.position = _monster.position - lastVector * Time.deltaTime;
+        _monster.position -= lastVector * Time.deltaTime;
     }
 }
