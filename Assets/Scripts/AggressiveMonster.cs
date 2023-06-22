@@ -6,15 +6,28 @@ public class AggressiveMonster : MonoBehaviour
 {
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
-    float _speed = 6;
-    private void OnCollisionEnter(Collision collision)
+    float _speed = 4;
+
+    int _damage = 6;
+    float _lastHitTime = 0;
+    private void Start()
     {
-        if(collision.collider.CompareTag("Player"))
+        _lastHitTime = Time.realtimeSinceStartup; // Time.realtimeSinceStartUp은 게임 시작부터 현재까지
+                                                  // 진행된 모든 시간을 저장한 값
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if(_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
+        {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
+            return;
+        }
+        if (collision.collider.CompareTag("Player"))
         {
-            Attack();
-            Debug.Log("플레이어에게 데미지가 들어갑니다.");
+            _lastHitTime = Time.realtimeSinceStartup;   
+            Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
         }
     }
+
     void Update()
     {
         if(_monster != null)
@@ -26,6 +39,8 @@ public class AggressiveMonster : MonoBehaviour
         }
         
         // 시야 안에 플레이어가 감지되면 플레이어를 따라온다.
+        // 1. 시야각
+        // 2. 레이
     }
     void FollowPlayer()
     {
@@ -35,8 +50,8 @@ public class AggressiveMonster : MonoBehaviour
         _monster.position = _monster.position + lastVector * Time.deltaTime;
         _monster.LookAt(_player);
     }
-    void Attack()
+    public int WolfAttack()
     {
-        
+        return _damage;
     }
 }
