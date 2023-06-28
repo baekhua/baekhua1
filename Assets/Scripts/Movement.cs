@@ -11,8 +11,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     private void FixedUpdate()
     {
@@ -21,17 +19,7 @@ public class Movement : MonoBehaviour
 
         Vector3 v3 = transform.forward * forward * _speed;
         v3 += transform.right * horizontal * _speed;
+        v3.y = _rb.velocity.y;
         _rb.velocity = v3;
-    }
-    private void Update()
-    {
-        rotX -= Input.GetAxis("Mouse Y");
-        rotY += Input.GetAxis("Mouse X");
-        RotateQuaternion();
-    }
-    void RotateQuaternion()
-    {
-        transform.rotation = Quaternion.Euler(rotX, 0f, 0f);
-        Camera.main.transform.rotation = Quaternion.Euler(0f, rotY, 0f);
     }
 }
