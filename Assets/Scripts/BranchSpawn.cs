@@ -4,8 +4,12 @@ public class BranchSpawn : MonoBehaviour
 {
     [SerializeField] GameObject _branchPrefab;
     [SerializeField] Transform _spawnPosition;
-    float _spawnTime = 0;
+    float _spawnTime = 60f;
     float _timer;
+    private void Start()
+    {
+        SpawnBranch();
+    }
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -17,6 +21,8 @@ public class BranchSpawn : MonoBehaviour
     }
     void SpawnBranch()
     {
+        Vector3 spawnPosition = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+        _spawnPosition.position = spawnPosition;
         GameObject branch = Instantiate(_branchPrefab, _spawnPosition.position, Quaternion.identity);
     }
 }
