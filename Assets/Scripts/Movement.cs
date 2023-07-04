@@ -6,12 +6,12 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] Transform _cam;
     Rigidbody _rb;
-    float _speed = 5;
-    float rotX = 0f;
-    float rotY = 0f;
+    float _speed = 5f;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     private void FixedUpdate()
     {

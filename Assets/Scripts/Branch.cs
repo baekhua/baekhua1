@@ -11,4 +11,11 @@ public class Branch : MonoBehaviour
     {
         _branch = gameObject.GetComponent<Transform>();
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+
+        }
+    }
 }

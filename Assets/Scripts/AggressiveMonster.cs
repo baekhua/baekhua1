@@ -6,7 +6,7 @@ public class AggressiveMonster : MonoBehaviour
 {
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
-    float _speed = 4;
+    float _speed = 1;
 
     int _damage = 6;
     float _lastHitTime = 0;
