@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Branch : MonoBehaviour
 {
-    [SerializeField] Transform _rightHand;
     Transform _branch;
 
     private void Start()
