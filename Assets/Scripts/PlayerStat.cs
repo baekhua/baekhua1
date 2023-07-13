@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
@@ -12,24 +10,8 @@ public class PlayerStat : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<PlayerStat>();
-        _itemObj = GetComponent<ItemObj>();
-
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            var branch = _branchSpawner;
-            foreach (var vars in branch)
-            {
-                float mindDistance = Vector3.Distance(transform.position, branch.position);
-                if(mindDistance < 1f)
-                {
-                     // 플레이어와 branch들 중 사이값이 1 미만인 애들을 따로 저장해야함.
-                }
-            }
-        }
+        //GetComponent<PlayerStat>();
+        //_itemObj = GetComponent<ItemObj>();
     }
     public void WolfAttack(int damage)
     {

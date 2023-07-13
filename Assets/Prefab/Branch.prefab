@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 8704137900583036145}
   - component: {fileID: 8704137900583036146}
   - component: {fileID: 8704137900583036147}
-  - component: {fileID: 8704137900583036140}
   m_Layer: 0
   m_Name: Branch
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704137900583036141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.75, y: 0, z: 3.26}
+  m_LocalPosition: {x: -20.75, y: 0.522, z: 3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,15 +97,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8704137900583036140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704137900583036141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0437d898aacd8c247a7e896077655a5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
