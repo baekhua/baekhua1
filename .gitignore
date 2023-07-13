@@ -73,3 +73,9 @@ crashlytics-build.properties
 
 /[Aa]ssets/IceAge
 /[Aa]ssets/Lowpoly Winter
+Assets/IceAge.meta
+Assets/Lowpoly Winter.meta
+Assets/LowPolyHuman2.obj
+Assets/LowPolyHuman2.obj.meta
+Assets/Scenes/Terrain.unity
+Assets/Scenes/Terrain.unity.meta
