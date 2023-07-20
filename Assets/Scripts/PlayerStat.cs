@@ -5,7 +5,7 @@ public class PlayerStat : MonoBehaviour
     int _maxHp = 100;
     int _hp;
     int _stamina = 100;
-    ItemObj _itemObj;
+
     [SerializeField] Transform _branchSpawner;
 
     private void Start()

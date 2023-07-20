@@ -1,7 +1,6 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class ItemController : MonoBehaviour
+public class GetItem : MonoBehaviour
 {
     //private void OnTriggerEnter(Collider other)
     //{
@@ -47,33 +46,34 @@ public class ItemController : MonoBehaviour
                 //hit.collider.gameObject.SetActive(false);
                 Destroy(hit.collider.gameObject);
             }
+            GenericSingleton<Inventory>.Instance.GetComponent<Inventory>().AddItem(hit.collider.GetComponent<Item>().GetItem());
         }
     }
 }
-class ItemObj
-{
-    public string _name;
-    public EItemType _etype;
-    public Branch _branch;
+//class ItemObj
+//{
+//    public string _name;
+//    public EItemType _etype;
+//    public Branch _branch;
 
-    public ItemObj(string name, EItemType etype)
-    {
-        _name = name;
-        _etype = etype;
-    }
-    //void SetBranch(Branch branch)
-    //{
-    //    _branch = branch;
-    //}
-    public void Equip()
-    {
-        GameObject playerHand = GameObject.Find("RightHand");
-        _branch.transform.SetParent(playerHand.transform);
-        _branch.transform.localPosition = Vector3.zero;
-    }
-}
-public enum EItemType
-{
-    Branch,
-}
+//    public ItemObj(string name, EItemType etype)
+//    {
+//        _name = name;
+//        _etype = etype;
+//    }
+//    //void SetBranch(Branch branch)
+//    //{
+//    //    _branch = branch;
+//    //}
+//    public void Equip()
+//    {
+//        GameObject playerHand = GameObject.Find("RightHand");
+//        _branch.transform.SetParent(playerHand.transform);
+//        _branch.transform.localPosition = Vector3.zero;
+//    }
+//}
+//public enum EItemType
+//{
+//    Branch,
+//}
 
