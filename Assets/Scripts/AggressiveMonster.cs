@@ -6,7 +6,7 @@ public class AggressiveMonster : MonoBehaviour
     [SerializeField] Transform _monster;
     float _speed = 1;
 
-    int _damage = 6;
+    int _damage = 60;
     float _lastHitTime = 0;
     private void Start()
     {
@@ -21,7 +21,8 @@ public class AggressiveMonster : MonoBehaviour
         }
         if (collision.collider.CompareTag("Player"))
         {
-            _lastHitTime = Time.realtimeSinceStartup;   
+            _lastHitTime = Time.realtimeSinceStartup;
+            PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
             Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
         }
     }
@@ -47,9 +48,5 @@ public class AggressiveMonster : MonoBehaviour
         Vector3 lastVector = dirVector * _speed;
         _monster.position = _monster.position + lastVector * Time.deltaTime;
         _monster.LookAt(_player);
-    }
-    public int WolfAttack()
-    {
-        return _damage;
     }
 }

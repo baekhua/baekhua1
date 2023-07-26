@@ -3,22 +3,21 @@ using UnityEngine;
 public class CamControl : MonoBehaviour
 {
     [SerializeField] Transform _player;
-    [SerializeField] Transform _tvPos;
-    [SerializeField] Transform _realCam;
     float rotX;
     float rotY;
-
-    Vector3 _fvPos;
-    private void Start()
-    {
-        _fvPos = _realCam.localPosition;
-    }
+    float minYAngle = -80f;
+    float maxYAngle = 80f;
     private void Update()
     {
         rotX -= Input.GetAxis("Mouse Y");
         rotY += Input.GetAxis("Mouse X");
 
+        rotX = Mathf.Clamp(rotX, minYAngle, maxYAngle);
+
         transform.rotation = Quaternion.Euler(rotX, rotY, 0);
-        transform.position = new Vector3(_player.position.x, _fvPos.y, _player.position.z);
+        transform.position = new Vector3(_player.position.x, _player.position.y, _player.position.z);
+        
     }
+    
+    
 }

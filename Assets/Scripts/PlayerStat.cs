@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : GenericSingleton<PlayerStat>
 {
     int _maxHp = 100;
-    int _hp;
+    int _currentHp;
     int _stamina = 100;
-
-    [SerializeField] Transform _branchSpawner;
 
     private void Start()
     {
-        //GetComponent<PlayerStat>();
-        //_itemObj = GetComponent<ItemObj>();
+        _currentHp = _maxHp;
     }
-    public void WolfAttack(int damage)
+    public void MonsterAttack(int damage)
     {
-        _hp = _maxHp - damage;
-        Debug.Log(_hp);
+        _currentHp = _currentHp - damage;
+        if (_currentHp <= 0) Die();
+        //Debug.Log(_hp);
     }
-    private void OnCollisionEnter(Collision collision)
+    public void Run(int running)
     {
-        WolfAttack(_hp);
+        _stamina = _stamina - running;
+    }
+    void Die()
+    {
+        //Destroy(gameObject);
+        Debug.Log("플레이어가 죽었습니다. ");
     }
 }

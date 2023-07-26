@@ -13,7 +13,6 @@ public class Item : MonoBehaviour
     }
     public ItemData GetItem()
     {
-        Destroy(gameObject);
         return _itemData;
     }
 }
