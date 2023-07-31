@@ -16,8 +16,5 @@ public class CamControl : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(rotX, rotY, 0);
         transform.position = new Vector3(_player.position.x, _player.position.y, _player.position.z);
-        
     }
-    
-    
 }

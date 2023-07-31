@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class AggressiveMonster : MonoBehaviour
+public class AggressiveMonster : MonsterStat
 {
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
     float _speed = 1;
 
-    int _damage = 60;
+    int _damage = 6;
     float _lastHitTime = 0;
     private void Start()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PassiveMonster : MonoBehaviour
+public class PassiveMonster : MonsterStat
 {
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
