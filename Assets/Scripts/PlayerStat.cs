@@ -17,6 +17,18 @@ public class PlayerStat : GenericSingleton<PlayerStat>
         {
             CreatBow();
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
+        }
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Time.timeScale = 0f;
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Time.timeScale = 1f;
+        }
     }
     public void CreatBow()
     {
@@ -25,7 +37,7 @@ public class PlayerStat : GenericSingleton<PlayerStat>
             _bow = Instantiate(_bowPrefab);
             if(_bow != null)
             {
-                 //_bow.Equip();
+                _bow.GetComponent<Bow>().Equip();
             }
         }
     }

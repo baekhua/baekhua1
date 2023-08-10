@@ -12,9 +12,12 @@ public class Bow : MonoBehaviour
     bool _isReloading = false;
     bool _isEquipped = false;
 
+    GameObject _makedArrow;
+
     private void Update()
     {
-        if(Input.GetMouseButton(0) && !_isEquipped)
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Vector3.up);
+        if (Input.GetMouseButtonDown(0) && !_isEquipped)
         {
             PullArrow();
         }
@@ -25,21 +28,26 @@ public class Bow : MonoBehaviour
     }
     void PullArrow()
     {
-        GameObject arrowPrefab = Instantiate(_arrowPrefab);
-        arrowPrefab.GetComponent<Arrow>().SetDamage(_attackDamage);
-        arrowPrefab.transform.position = transform.position;
+        _makedArrow = Instantiate(_arrowPrefab);
+        _makedArrow.transform.position = transform.position;
+        _makedArrow.GetComponent<Rigidbody>().isKinematic = true;
+        _makedArrow.GetComponent<Arrow>().SetDamage(_attackDamage);
+        //_makedArrow.GetComponent<BoxCollider>().isTrigger = true;
         _isEquipped = true;
-        //arrowPrefab.GetComponent<Rigidbody>().velocity = transform.forward * _range;
     }
     public void Equip()
     {
         GameObject heroHand = GameObject.Find("RightHand");
         transform.SetParent(heroHand.transform);
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
     }
     void ShootArrow()
     {
-        _arrowPrefab.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Force);
+        _makedArrow.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        _makedArrow.GetComponent<Rigidbody>().isKinematic = false;
+        //_makedArrow.GetComponent<BoxCollider>().isTrigger = false;
+        _makedArrow.GetComponent<Rigidbody>().AddForce(transform.forward * _range, ForceMode.Impulse);
         _isEquipped = false;
     }
 }

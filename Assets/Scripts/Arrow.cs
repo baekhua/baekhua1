@@ -5,9 +5,9 @@ public class Arrow : MonoBehaviour
     int _damage;
     float _range;
     float _timer = 0f;
-    private void Start()
+    private void Update()
     {
-        AggressiveMonster am = GetComponent<AggressiveMonster>();
+        
     }
     public void SetDamage(int damage)
     {
