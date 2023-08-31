@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4898539}
   - component: {fileID: 4898538}
   - component: {fileID: 4898537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137727078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.52}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4630,7 +4630,7 @@ GameObject:
   - component: {fileID: 1134720097}
   - component: {fileID: 1134720096}
   - component: {fileID: 1134720095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5411,7 +5411,7 @@ GameObject:
   - component: {fileID: 1335510601}
   - component: {fileID: 1335510600}
   - component: {fileID: 1335510599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5599,7 +5599,7 @@ GameObject:
   - component: {fileID: 1394919980}
   - component: {fileID: 1394919986}
   - component: {fileID: 1394919987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -8396,7 +8396,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905465442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -62.4, y: 2.6363788, z: -77}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_ConstrainProportionsScale: 0
@@ -8433,8 +8433,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d382df6ae7e338741a942a5877588276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _viewAngle: 167.03
+  _viewRadius: 4.62
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
   _player: {fileID: 1394919985}
   _monster: {fileID: 1905465446}
+  _speed: 0.47
 --- !u!4 &1907421524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 410712, guid: 1ddd3a8f166600242ae1330bc28544bf, type: 3}

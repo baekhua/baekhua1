@@ -32,7 +32,7 @@ public class Bow : MonoBehaviour
         _makedArrow.transform.position = transform.position;
         _makedArrow.GetComponent<Rigidbody>().isKinematic = true;
         _makedArrow.GetComponent<Arrow>().SetDamage(_attackDamage);
-        //_makedArrow.GetComponent<BoxCollider>().isTrigger = true;
+        _makedArrow.GetComponent<BoxCollider>().isTrigger = true;
         _isEquipped = true;
     }
     public void Equip()
@@ -46,7 +46,7 @@ public class Bow : MonoBehaviour
     {
         _makedArrow.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
         _makedArrow.GetComponent<Rigidbody>().isKinematic = false;
-        //_makedArrow.GetComponent<BoxCollider>().isTrigger = false;
+        _makedArrow.GetComponent<BoxCollider>().isTrigger = false;
         _makedArrow.GetComponent<Rigidbody>().AddForce(transform.forward * _range, ForceMode.Impulse);
         _isEquipped = false;
     }
