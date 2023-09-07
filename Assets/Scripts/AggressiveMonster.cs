@@ -22,7 +22,7 @@ public class AggressiveMonster : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if(_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
+        if (_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
         {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
             return;
         }
@@ -33,7 +33,6 @@ public class AggressiveMonster : MonoBehaviour
             Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
         }
     }
-
     void Update()
     {
         //if(_monster != null)
@@ -84,7 +83,11 @@ public class AggressiveMonster : MonoBehaviour
             {
                 _hitTargetList.Add(enemyColli);
                 Debug.DrawLine(myPos, targetPos, Color.red);
-                FollowPlayer();
+                float distance = Vector3.Distance(gameObject.transform.position, enemyColli.transform.position);
+                if(distance > 0.5f)
+                {
+                    FollowPlayer();
+                }
             }
         }
     }
