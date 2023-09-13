@@ -44,10 +44,18 @@ public class Bow : MonoBehaviour
     }
     void ShootArrow()
     {
-        _makedArrow.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
-        _makedArrow.GetComponent<Rigidbody>().isKinematic = false;
-        _makedArrow.GetComponent<BoxCollider>().isTrigger = false;
-        _makedArrow.GetComponent<Rigidbody>().AddForce(transform.forward * _range, ForceMode.Impulse);
+        //_makedArrow.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        //_makedArrow.GetComponent<Rigidbody>().isKinematic = false;
+        //_makedArrow.GetComponent<BoxCollider>().isTrigger = false;
+        //_makedArrow.GetComponent<Rigidbody>().AddForce(transform.forward * _range, ForceMode.Impulse);
+        //_isEquipped = false;
+        // 화살 발사 방향과 힘 설정
+        Vector3 shootDirection = transform.forward;
+        _makedArrow.GetComponent<Arrow>().Shoot(shootDirection, _range);
+
+        // 장전 상태 해제
         _isEquipped = false;
+
+        // 화살 재활용을 위해 ResetArrow 함수 호출
     }
 }

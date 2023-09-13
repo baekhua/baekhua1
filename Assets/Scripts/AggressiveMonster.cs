@@ -97,3 +97,10 @@ public class AggressiveMonster : MonoBehaviour
         return new Vector3(Mathf.Sin(radian), 0f, Mathf.Cos(radian));
     }
 }
+
+public class Sensor
+{
+    public bool CanSeePlayer { get; private set; }
+    public Vector3 PlayerPosition { get; private set; }
+}
+

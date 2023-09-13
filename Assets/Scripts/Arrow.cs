@@ -5,13 +5,18 @@ public class Arrow : MonoBehaviour
     int _damage;
     float _range;
     float _timer = 0f;
-    private void Update()
+    Rigidbody _rig;
+    private void Awake()
     {
-        
+        _rig = GetComponent<Rigidbody>();
     }
     public void SetDamage(int damage)
     {
         _damage = damage;
+    }
+    public void Shoot(Vector3 dir, float force)
+    {
+        _rig.velocity = dir.normalized * force;
     }
     private void OnTriggerEnter(Collider other)
     {
