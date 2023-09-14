@@ -30,9 +30,9 @@ public class Bow : MonoBehaviour
     {
         _makedArrow = Instantiate(_arrowPrefab);
         _makedArrow.transform.position = transform.position;
-        _makedArrow.GetComponent<Rigidbody>().isKinematic = true;
+        //_makedArrow.GetComponent<Rigidbody>().isKinematic = true;
         _makedArrow.GetComponent<Arrow>().SetDamage(_attackDamage);
-        _makedArrow.GetComponent<BoxCollider>().isTrigger = true;
+        //_makedArrow.GetComponent<BoxCollider>().isTrigger = true;
         _isEquipped = true;
     }
     public void Equip()

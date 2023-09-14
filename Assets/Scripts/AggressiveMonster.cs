@@ -10,6 +10,7 @@ public class AggressiveMonster : MonoBehaviour
 
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
+    [SerializeField] GameObject _navSurf;
     [SerializeField] float _speed = 0f;
 
     int _damage = 6;
@@ -19,22 +20,24 @@ public class AggressiveMonster : MonoBehaviour
     {
         _lastHitTime = Time.realtimeSinceStartup; // Time.realtimeSinceStartUp은 게임 시작부터 현재까지
                                                   // 진행된 모든 시간을 저장한 값
+        _navSurf.GetComponent<NavSurf>().SetTarget(_monster);
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
-        {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
-            return;
-        }
-        if (collision.collider.CompareTag("Player"))
-        {
-            _lastHitTime = Time.realtimeSinceStartup;
-            PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
-            Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
-        }
-    }
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
+    //    {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
+    //        return;
+    //    }
+    //    if (collision.collider.CompareTag("Player"))
+    //    {
+    //        _lastHitTime = Time.realtimeSinceStartup;
+    //        PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
+    //        Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
+    //    }
+    //}
     void Update()
     {
+        
         //if(_monster != null)
         //{
         //    if(Vector3.Distance(_player.position, _monster.position) < 50)
@@ -47,6 +50,7 @@ public class AggressiveMonster : MonoBehaviour
         // 1. 시야각
         // 2. 레이
     }
+    public Transform GetTarget() => _player.transform;
     void FollowPlayer()
     {
         Vector3 moveVector = (_player.position - _monster.position);
