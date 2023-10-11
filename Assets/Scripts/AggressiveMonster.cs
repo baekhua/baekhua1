@@ -10,7 +10,6 @@ public class AggressiveMonster : MonoBehaviour
 
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
-    [SerializeField] GameObject _navSurf;
     [SerializeField] float _speed = 0f;
 
     int _damage = 6;
@@ -20,7 +19,6 @@ public class AggressiveMonster : MonoBehaviour
     {
         _lastHitTime = Time.realtimeSinceStartup; // Time.realtimeSinceStartUp은 게임 시작부터 현재까지
                                                   // 진행된 모든 시간을 저장한 값
-        _navSurf.GetComponent<NavSurf>().SetTarget(_monster);
     }
     //private void OnCollisionStay(Collision collision)
     //{
@@ -37,18 +35,13 @@ public class AggressiveMonster : MonoBehaviour
     //}
     void Update()
     {
-        
-        //if(_monster != null)
+        //if (_monster != null)
         //{
-        //    if(Vector3.Distance(_player.position, _monster.position) < 50)
+        //    if (Vector3.Distance(_player.position, _monster.position) < 50)
         //    {
         //        FollowPlayer();
         //    }
         //}
-        
-        // 시야 안에 플레이어가 감지되면 플레이어를 따라온다.
-        // 1. 시야각
-        // 2. 레이
     }
     public Transform GetTarget() => _player.transform;
     void FollowPlayer()
