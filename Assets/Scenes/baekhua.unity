@@ -1755,7 +1755,7 @@ RectTransform:
   - {fileID: 1082771212}
   - {fileID: 888063340}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2072,7 +2072,7 @@ Transform:
   - {fileID: 1331609514}
   - {fileID: 933551865}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &473295398 stripped
 Transform:
@@ -2193,7 +2193,7 @@ Transform:
   - {fileID: 1297872038}
   - {fileID: 2098193218}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &557436008
 PrefabInstance:
@@ -2738,7 +2738,7 @@ Transform:
   - {fileID: 1905465446}
   - {fileID: 941748589}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &698415236
 PrefabInstance:
@@ -4236,7 +4236,7 @@ Transform:
   - {fileID: 1561025791}
   - {fileID: 1347018910}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1028042646
 PrefabInstance:
@@ -5761,7 +5761,7 @@ Transform:
   - {fileID: 1134720094}
   - {fileID: 1335510598}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1394919986
 MonoBehaviour:
@@ -6771,7 +6771,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1536325101
 MonoBehaviour:
@@ -7938,7 +7938,7 @@ Transform:
   - {fileID: 391036670}
   - {fileID: 897018919}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1803097114 stripped
 Transform:
@@ -8680,7 +8680,7 @@ Transform:
   m_Children:
   - {fileID: 623360397}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1943025753
 PrefabInstance:
@@ -9043,7 +9043,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2020256828
 PrefabInstance:
@@ -9291,7 +9291,7 @@ Transform:
   - {fileID: 1037778073}
   - {fileID: 547906168}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111256161
 GameObject:
