@@ -33,6 +33,7 @@ public class Select : MonoBehaviour
     }
     public void Slot(int number)
     {
+        GenericSingleton<AudioManager>.Instance.GetComponent<AudioManager>().PlaySFX(AudioManager.Sfx.Click);
         DataManager.instance._nowSlot = number;
 
         if (_saveFile[number])
@@ -51,6 +52,7 @@ public class Select : MonoBehaviour
     }
     public void GoGame()
     {
+        GenericSingleton<AudioManager>.Instance.GetComponent<AudioManager>().PlaySFX(AudioManager.Sfx.Click);
         if (!_saveFile[DataManager.instance._nowSlot])
         {
             DataManager.instance._nowPlayer._name = _newPlayerName.text;
@@ -61,6 +63,7 @@ public class Select : MonoBehaviour
     }
     public void BackScene()
     {
-        SceneManager.LoadScene("Scene1 1");
+        GenericSingleton<AudioManager>.Instance.GetComponent<AudioManager>().PlaySFX(AudioManager.Sfx.Click);
+        SceneManager.LoadScene("TitleScene");
     }
 }

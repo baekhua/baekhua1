@@ -15,11 +15,11 @@ public class PlayerData
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
-    
-    public PlayerData _nowPlayer = new PlayerData();
-    public int _nowSlot;
-    public string _path;
     public static string _lastScene;
+    
+    [HideInInspector] public int _nowSlot;
+    [HideInInspector] public string _path;
+    [HideInInspector] public PlayerData _nowPlayer = new PlayerData();
 
     private void Awake()
     {

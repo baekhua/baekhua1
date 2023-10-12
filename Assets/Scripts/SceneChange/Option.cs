@@ -4,17 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class Option : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
     public void OnBackButton()
     {
+        GenericSingleton<AudioManager>.Instance.GetComponent<AudioManager>().PlaySFX(AudioManager.Sfx.Click);
         SceneManager.LoadScene(DataManager._lastScene);
         if(DataManager._lastScene == "baekhua")
         {
