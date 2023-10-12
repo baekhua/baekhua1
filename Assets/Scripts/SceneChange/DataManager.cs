@@ -3,21 +3,9 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 
-// 저장하는 법
-// 1. 저장할 데이터가 존재
-// 2. 데이터를 JSON으로 변환
-// 3. JSON을 외부에 저장
-
-// 불러오는 법
-// 1. 외부에 저장된 JSON을 가져옴
-// 2. JSON을 데이터형태로 변환
-// 3. 불러온 데이터를 사용
-
-// 슬롯 별로 다르게 저장
 [Serializable]
 public class PlayerData
 {
-    // 이름, 착용중인 무기
     public string _name;
     public int _level = 1;
     public int _coin = 100;

@@ -28,10 +28,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         RayNormal();
-        if()
-        {
 
-        }
         if(Input.GetKey(KeyCode.LeftShift))
         {
             _speed = 5f;
