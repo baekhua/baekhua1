@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/baekhua.unity
+    guid: 0847fa6da552fb84ab149b090df9c5c0
+  - enabled: 1
     path: Assets/Scenes/Scene1 1.unity
     guid: bffca8e3f44f2f149929119d4a4b3157
   - enabled: 1
@@ -14,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Select.unity
     guid: d00ee682431021340ba50915155e3755
+  - enabled: 1
+    path: Assets/Scenes/Option.unity
+    guid: ed4e16e82f49db44cb9074d92831aa3f
   - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: ce710794fe1c5984e882f33a04e207b9

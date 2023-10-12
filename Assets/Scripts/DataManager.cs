@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 
 // 저장하는 법
 // 1. 저장할 데이터가 존재
@@ -30,6 +31,7 @@ public class DataManager : MonoBehaviour
     public PlayerData _nowPlayer = new PlayerData();
     public int _nowSlot;
     public string _path;
+    public static string _lastScene;
 
     private void Awake()
     {
@@ -48,31 +50,11 @@ public class DataManager : MonoBehaviour
     }
     public void SaveData()
     {
-        Debug.Log("SaveData가 실행되었습니다.");
         string json = JsonUtility.ToJson(_nowPlayer);
         File.WriteAllText( _path + _nowSlot.ToString(), json );
-        //string path = Application.persistentDataPath + $"/Save{_nowSlot}.json";
-        //Debug.Log(path);
-        //using (StreamWriter outStream = File.CreateText(path))
-        //{
-        //    outStream.Write(json);
-        //}
     }
     public void LoadData()
     {
-        //string path = Application.persistentDataPath + $"/Save{_nowSlot}.json";
-        //if (File.Exists(path))
-        //{
-        //    string json = "";
-        //    using (StreamReader inStream = new StreamReader(path))
-        //    {
-        //        json = inStream.ReadToEnd();
-        //    }
-        //    if (string.IsNullOrEmpty(json) == false)
-        //    {
-        //        _nowPlayer = JsonUtility.FromJson<PlayerData>(json);
-        //    }
-        //}
         string json = File.ReadAllText(_path + _nowSlot.ToString());
         _nowPlayer = JsonUtility.FromJson<PlayerData>( json );
     }

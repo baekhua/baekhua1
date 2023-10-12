@@ -57,7 +57,7 @@ public class Select : MonoBehaviour
             DataManager.instance.SaveData();
             Debug.Log("GoGame이 실행되었습니다.");
         }
-        LoadingSceneController.LoadScene("Scene2");
+        LoadingSceneController.LoadScene("baekhua");
     }
     public void BackScene()
     {
