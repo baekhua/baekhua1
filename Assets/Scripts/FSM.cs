@@ -14,12 +14,13 @@ public class FSM : MonoBehaviour
     }
     public void StartAnim(string AniName)
     {
-        if(AniName.Equals("Attack"))
+        //GetComponent<Animator>().Play("breathes");
+        if (AniName.Equals("Attack"))
         {
             GetComponent<Animator>().SetTrigger("Attack1");
             Debug.Log("Attack 이 실행됩니다.");
         }
-        else if(AniName.Equals("Idle"))
+        else if (AniName.Equals("Idle"))
         {
             GetComponent<Animator>().Play("breathes");
             Debug.Log("Idle 이 실행됩니다.");

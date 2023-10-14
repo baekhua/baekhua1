@@ -18,13 +18,13 @@ public class Arrow : MonoBehaviour
     {
         _rig.velocity = dir.normalized * force;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Monster"))
-        {
-            MonsterStat.Instance.GetComponent<MonsterStat>().TakeDamege(_damage);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Monster"))
+    //    {
+    //        MonsterStat.Instance.GetComponent<MonsterStat>().TakeDamege(_damage);
+    //    }
+    //}
     public void ArrowEquip()
     {
         GameObject bow = GameObject.Find("Bow");

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MonsterStat : GenericSingleton<MonsterStat>
+public class MonsterStat : MonoBehaviour
 {
     int _maxHp = 100;
     int _currentHp = 0;

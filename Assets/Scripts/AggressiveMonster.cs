@@ -15,6 +15,7 @@ public class AggressiveMonster : MonoBehaviour
 
     int _damage = 60;
     float _lastHitTime = 0;
+    bool _animRunTime = false;
     List<Collider> _hitTargetList = new List<Collider>();
     private void Start()
     {
@@ -32,7 +33,7 @@ public class AggressiveMonster : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             _lastHitTime = Time.realtimeSinceStartup;
-            PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
+            //PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
             Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
         }
     }
@@ -43,8 +44,7 @@ public class AggressiveMonster : MonoBehaviour
         Vector3 dirVector = moveVector.normalized;
         Vector3 lastVector = dirVector * _speed;
         _monster.position = _monster.position + lastVector * Time.deltaTime;
-        GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.AttackMove);
-        Debug.Log("AttackMove 실행 !");
+
         _monster.LookAt(_player);
     }
     private void OnDrawGizmos()
@@ -78,7 +78,13 @@ public class AggressiveMonster : MonoBehaviour
                 float distance = Vector3.Distance(gameObject.transform.position, enemyColli.transform.position);
                 if(distance > 0.5f)
                 {
+                    _animRunTime = true;
                     FollowPlayer();
+                    if(!_animRunTime)
+                    {
+                        GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.AttackMove);
+                        Debug.Log("AttackMove 실행 !");
+                    }
                 }
             }
         }
@@ -87,6 +93,10 @@ public class AggressiveMonster : MonoBehaviour
     {
         float radian = angle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(radian), 0f, Mathf.Cos(radian));
+    }
+    public void ResetAnimBool()
+    {
+        _animRunTime = false;
     }
 }
 

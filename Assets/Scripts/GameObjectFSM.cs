@@ -45,7 +45,7 @@ public class MonsterIdle : GameObjectFSMState
         _timer = 0;
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
-        _fsm.StartAnim("Idle");
+        //_fsm.StartAnim("Idle");
     }
     public override void OnExit()
     {
@@ -69,7 +69,7 @@ public class MonsterPatrol : GameObjectFSMState
     }
     void CheckTransition()
     {
-        if(Vector3.Distance(_targetPos, _obj.transform.position) < 0.1f)
+        if(Vector3.Distance(_targetPos, _obj.transform.position) < 0.5f)
         {
             _isEndPoint = true;
             _monsterFSM.ChangeStateByEnum(MonsterState.Idle);
@@ -106,7 +106,7 @@ public class MonsterAttack : GameObjectFSMState
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
         _target = _fsm.GetTargetTrans();
         _fsm.StartAnim("Attack");
-        //_monsterFSM.SetAnimStateCallback(() => _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove));
+        _monsterFSM.SetAnimStateCallback(() => _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove));
     }
     public override void DoLoop()
     {
@@ -117,7 +117,7 @@ public class MonsterAttack : GameObjectFSMState
     }
     public override void OnExit()
     {
-
+        
     }
 }
 public class MonsterAttackMove : GameObjectFSMState
@@ -136,23 +136,23 @@ public class MonsterAttackMove : GameObjectFSMState
     }
     public override void DoLoop()
     {
-        _obj.transform.position += (_targetTrans.position - _obj.transform.position).normalized * _attackMoveSpeed * Time.deltaTime;
+        //_obj.transform.position += (_targetTrans.position - _obj.transform.position).normalized * _attackMoveSpeed * Time.deltaTime;
         CheckTransition();
     }
     void CheckTransition()
     {
-        //if(Vector3.Distance(_targetTrans.position, _obj.transform.position) < 2f)
-        //{
-        //    _monsterFSM.ChangeStateByEnum(MonsterState.Attack);
-        //}
-        if(Vector3.Distance(_targetTrans.transform.position, _obj.transform.position) > 10f)
+        if (Vector3.Distance(_targetTrans.position, _obj.transform.position) < 2f)
+        {
+            _monsterFSM.ChangeStateByEnum(MonsterState.Attack);
+        }
+        if (Vector3.Distance(_targetTrans.transform.position, _obj.transform.position) > 10f)
         {
             _monsterFSM.ChangeStateByEnum(MonsterState.Idle);
         }
     }
     public override void OnExit()
     {
-
+        _obj.GetComponent<AggressiveMonster>().ResetAnimBool();
     }
 }
 public class MonsterDamage : GameObjectFSMState
