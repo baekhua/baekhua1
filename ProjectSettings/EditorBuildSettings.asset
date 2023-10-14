@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/baekhua.unity
     guid: 0847fa6da552fb84ab149b090df9c5c0
   - enabled: 1
-    path: Assets/Scenes/Scene2.unity
-    guid: 850f16b085410b140941aef69a16cf93
-  - enabled: 1
     path: Assets/Scenes/Select.unity
     guid: d00ee682431021340ba50915155e3755
   - enabled: 1
@@ -23,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: ce710794fe1c5984e882f33a04e207b9
+  - enabled: 1
+    path: Assets/Scenes/EndingScene.unity
+    guid: 55390446b8eeb954aa34ac7f857f5d2d
   m_configObjects: {}

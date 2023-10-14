@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class MonsterFSM : GameObjectFSM
 {
@@ -12,6 +11,7 @@ public class MonsterFSM : GameObjectFSM
         _state.Add(MonsterState.Patrol, new MonsterPatrol(gameObject));
         _state.Add(MonsterState.Attack, new MonsterAttack(gameObject));
         _state.Add(MonsterState.AttackMove, new MonsterAttackMove(gameObject));
+        _state.Add(MonsterState.Damage, new MonsterDamage(gameObject));
         _state.Add(MonsterState.Die, new MonsterDie(gameObject));
     }
     public void ChangeStateByEnum(MonsterState type)
@@ -34,5 +34,6 @@ public enum MonsterState
     Patrol,
     Attack,
     AttackMove,
+    Damage,
     Die,
 }

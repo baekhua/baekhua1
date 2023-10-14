@@ -8,40 +8,34 @@ public class AggressiveMonster : MonoBehaviour
     [SerializeField] LayerMask _targetMask;
     [SerializeField] LayerMask _obstacleMask;
 
+    [SerializeField] float _speed = 0f;
     [SerializeField] Transform _player;
     [SerializeField] Transform _monster;
-    [SerializeField] float _speed = 0f;
+    [SerializeField] Animator _wolf;
 
-    int _damage = 6;
+    int _damage = 60;
     float _lastHitTime = 0;
     List<Collider> _hitTargetList = new List<Collider>();
     private void Start()
     {
         _lastHitTime = Time.realtimeSinceStartup; // Time.realtimeSinceStartUp은 게임 시작부터 현재까지
                                                   // 진행된 모든 시간을 저장한 값
+        FSM fsm = GetComponent<FSM>();
+        fsm.SetMoveSpeed(_speed);
     }
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
-    //    {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
-    //        return;
-    //    }
-    //    if (collision.collider.CompareTag("Player"))
-    //    {
-    //        _lastHitTime = Time.realtimeSinceStartup;
-    //        PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
-    //        Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
-    //    }
-    //}
-    void Update()
+    private void OnCollisionStay(Collision collision)
     {
-        //if (_monster != null)
-        //{
-        //    if (Vector3.Distance(_player.position, _monster.position) < 50)
-        //    {
-        //        FollowPlayer();
-        //    }
-        //}
+        if (_lastHitTime + 2 > Time.realtimeSinceStartup) // 현재 시간 보다 lastHitTime + 2가 더 클 경우 밑에 실행x
+        {                                                // 즉, 2초마다 플레이어에게 _damage를 준다.
+            return;
+        }
+        if (collision.collider.CompareTag("Player"))
+        {
+            _lastHitTime = Time.realtimeSinceStartup;
+            PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
+            GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.Attack);
+            Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
+        }
     }
     public Transform GetTarget() => _player.transform;
     void FollowPlayer()

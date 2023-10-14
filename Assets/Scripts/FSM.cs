@@ -5,7 +5,7 @@ public class FSM : MonoBehaviour
     [SerializeField] Transform _target;
     [SerializeField] Transform[] _patPoints;
     [SerializeField] float _attackMoveSpeed;
-    [SerializeField] float _speed;
+    float _speed;
 
     int _patIdx = 0;
     void Start()
@@ -14,14 +14,27 @@ public class FSM : MonoBehaviour
     }
     public void StartAnim(string AniName)
     {
-        GetComponent<Animator>().Play("Idle");
+        GetComponent<Animator>().Play("breathes");
         if(AniName.Equals("Attack"))
         {
-            GetComponent<Animator>().SetTrigger("MonsterAttack");
+            GetComponent<Animator>().SetTrigger("Attack1");
         }
         else if(AniName.Equals("Die"))
         {
-            GetComponent<Animator>().SetTrigger("MonsterDie");
+            GetComponent<Animator>().SetTrigger("Die");
+        }
+        else if(AniName.Equals("Patrol"))
+        {
+            GetComponent<Animator>().SetTrigger("Walk");
+            Debug.Log("Walk 가 실행됩니다.");
+        }
+        else if(AniName.Equals("Damage"))
+        {
+            GetComponent<Animator>().SetTrigger("Damage");
+        }
+        else if(AniName.Equals("AttackMove"))
+        {
+            GetComponent<Animator>().SetTrigger("Run");
         }
         else
         {
@@ -29,8 +42,9 @@ public class FSM : MonoBehaviour
         }
     }
     public Transform GetTargetTrans() => _target;
-    public Transform GetNowPatPoint() => _patPoints[_patIdx];
+    public Transform[] GetNowPatPoint() => _patPoints;
     public float GetMoveSpeed() => _speed;
+    public void SetMoveSpeed(float speed) => _speed = speed;
     public float GetAttackMoveSpeed() => _attackMoveSpeed;
     public void AddPatIdx()
     {

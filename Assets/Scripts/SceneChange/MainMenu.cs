@@ -29,6 +29,10 @@ public class MainMenu : MonoBehaviour
     public void OnClickQuit()
     {
         GenericSingleton<AudioManager>.Instance.GetComponent<AudioManager>().PlaySFX(AudioManager.Sfx.Click);
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // 에디터의 플레이를 중단시킴
+#else
+        Application.Quit();
+#endif
     }
 }
