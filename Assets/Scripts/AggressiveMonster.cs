@@ -33,7 +33,6 @@ public class AggressiveMonster : MonoBehaviour
         {
             _lastHitTime = Time.realtimeSinceStartup;
             PlayerStat.Instance.GetComponent<PlayerStat>().MonsterAttack(_damage);
-            GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.Attack);
             Debug.Log("플레이어에게" + _damage + "데미지가 들어갑니다.");
         }
     }
@@ -44,6 +43,8 @@ public class AggressiveMonster : MonoBehaviour
         Vector3 dirVector = moveVector.normalized;
         Vector3 lastVector = dirVector * _speed;
         _monster.position = _monster.position + lastVector * Time.deltaTime;
+        GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.AttackMove);
+        Debug.Log("AttackMove 실행 !");
         _monster.LookAt(_player);
     }
     private void OnDrawGizmos()

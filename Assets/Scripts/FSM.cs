@@ -14,14 +14,20 @@ public class FSM : MonoBehaviour
     }
     public void StartAnim(string AniName)
     {
-        GetComponent<Animator>().Play("breathes");
         if(AniName.Equals("Attack"))
         {
             GetComponent<Animator>().SetTrigger("Attack1");
+            Debug.Log("Attack 이 실행됩니다.");
+        }
+        else if(AniName.Equals("Idle"))
+        {
+            GetComponent<Animator>().Play("breathes");
+            Debug.Log("Idle 이 실행됩니다.");
         }
         else if(AniName.Equals("Die"))
         {
             GetComponent<Animator>().SetTrigger("Die");
+            Debug.Log("Die 가 실행됩니다.");
         }
         else if(AniName.Equals("Patrol"))
         {
@@ -31,10 +37,12 @@ public class FSM : MonoBehaviour
         else if(AniName.Equals("Damage"))
         {
             GetComponent<Animator>().SetTrigger("Damage");
+            Debug.Log("Damage 가 실행됩니다.");
         }
         else if(AniName.Equals("AttackMove"))
         {
             GetComponent<Animator>().SetTrigger("Run");
+            Debug.Log("AttackMove 가 실행됩니다.");
         }
         else
         {
@@ -42,7 +50,7 @@ public class FSM : MonoBehaviour
         }
     }
     public Transform GetTargetTrans() => _target;
-    public Transform[] GetNowPatPoint() => _patPoints;
+    public Transform GetNowPatPoint() => _patPoints[_patIdx];
     public float GetMoveSpeed() => _speed;
     public void SetMoveSpeed(float speed) => _speed = speed;
     public float GetAttackMoveSpeed() => _attackMoveSpeed;

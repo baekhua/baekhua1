@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class GameObjectFSM : MonoBehaviour
@@ -59,19 +58,14 @@ public class MonsterPatrol : GameObjectFSMState
     MonsterFSM _monsterFSM;
     float _moveSpeed;
     Vector3 _targetPos;
-    Transform[] _patPoint;
     Transform _targetTransform;
     bool _isEndPoint = false;
     public MonsterPatrol(GameObject obj) : base(obj) { }
     public override void DoLoop()
     {
-        for(int i = 0; i < _patPoint.Length; i++)
-        {
-            _targetPos = _patPoint[i].position;
-            _obj.transform.LookAt(_targetPos);
-            _obj.transform.position += (_targetPos - _obj.transform.position).normalized * _moveSpeed * Time.deltaTime;
-            CheckTransition();
-        }
+        _obj.transform.LookAt(_targetPos);
+        _obj.transform.position += (_targetPos - _obj.transform.position).normalized * _moveSpeed * Time.deltaTime;
+        CheckTransition();
     }
     void CheckTransition()
     {
@@ -80,17 +74,17 @@ public class MonsterPatrol : GameObjectFSMState
             _isEndPoint = true;
             _monsterFSM.ChangeStateByEnum(MonsterState.Idle);
         }
-        if(Vector3.Distance(_targetTransform.position, _obj.transform.position) < 10)
-        {
-            _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove);
-        }
+        //if(Vector3.Distance(_targetTransform.position, _obj.transform.position) < 10)
+        //{
+        //    _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove);
+        //}
     }
     public override void OnEnter()
     {
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
         _moveSpeed = _fsm.GetMoveSpeed();
-        _patPoint = _fsm.GetNowPatPoint();
+        _targetPos = _fsm.GetNowPatPoint().position;
         _targetTransform = _fsm.GetTargetTrans();
         _fsm.StartAnim("Patrol");
         _isEndPoint = false;
@@ -104,17 +98,22 @@ public class MonsterAttack : GameObjectFSMState
 {
     FSM _fsm;
     MonsterFSM _monsterFSM;
+    Transform _target;
     public MonsterAttack(GameObject obj) : base(obj) { }
     public override void OnEnter()
     {
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
+        _target = _fsm.GetTargetTrans();
         _fsm.StartAnim("Attack");
-        _monsterFSM.SetAnimStateCallback(() => _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove));
+        //_monsterFSM.SetAnimStateCallback(() => _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove));
     }
     public override void DoLoop()
     {
-
+        if(Vector3.Distance(_target.transform.position, _obj.transform.position) > 3)
+        {
+            _monsterFSM.ChangeStateByEnum(MonsterState.Idle);
+        }
     }
     public override void OnExit()
     {
