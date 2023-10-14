@@ -2,26 +2,28 @@ using UnityEngine;
 
 public class MonsterStat : MonoBehaviour
 {
-    int _maxHp = 100;
-    int _currentHp = 0;
+    float _maxHp = 100;
+    float _currentHp = 0;
     float _timer;
+    [SerializeField] GameObject _dropItem;
     void Start()
     {
         _currentHp = _maxHp;
     }
-    public void TakeDamege(int damage)
+    public void TakeDamage(float damage)
     {
         _currentHp -= damage;
+        Debug.Log($"Damage를 {damage} 만큼 입었습니다 !");
 
         if (_currentHp <= 0)
         {
             GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.Die);
-            _timer += Time.deltaTime;
-            if (_timer > 1)
-            {
-                Destroy(gameObject);
-                _timer = 0;
-            }
         }
+    }
+    public void DropAndDestory()
+    {
+        GameObject temp = Instantiate(_dropItem);
+        temp.transform.position = gameObject.transform.position;
+        Destroy(gameObject);
     }
 }

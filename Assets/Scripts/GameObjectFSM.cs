@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class GameObjectFSM : MonoBehaviour
 {
@@ -63,6 +65,7 @@ public class MonsterPatrol : GameObjectFSMState
     public MonsterPatrol(GameObject obj) : base(obj) { }
     public override void DoLoop()
     {
+        _fsm.StartAnim("Patrol");
         _obj.transform.LookAt(_targetPos);
         _obj.transform.position += (_targetPos - _obj.transform.position).normalized * _moveSpeed * Time.deltaTime;
         CheckTransition();
@@ -86,7 +89,7 @@ public class MonsterPatrol : GameObjectFSMState
         _moveSpeed = _fsm.GetMoveSpeed();
         _targetPos = _fsm.GetNowPatPoint().position;
         _targetTransform = _fsm.GetTargetTrans();
-        _fsm.StartAnim("Patrol");
+        
         _isEndPoint = false;
     }
     public override void OnExit()
@@ -102,6 +105,7 @@ public class MonsterAttack : GameObjectFSMState
     public MonsterAttack(GameObject obj) : base(obj) { }
     public override void OnEnter()
     {
+        Debug.Log("MonsterAttack에 들어왔습니다.");
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
         _target = _fsm.GetTargetTrans();
@@ -117,7 +121,7 @@ public class MonsterAttack : GameObjectFSMState
     }
     public override void OnExit()
     {
-        
+
     }
 }
 public class MonsterAttackMove : GameObjectFSMState
@@ -137,11 +141,12 @@ public class MonsterAttackMove : GameObjectFSMState
     public override void DoLoop()
     {
         //_obj.transform.position += (_targetTrans.position - _obj.transform.position).normalized * _attackMoveSpeed * Time.deltaTime;
+        _fsm.StartAnim("AttackMove");
         CheckTransition();
     }
     void CheckTransition()
     {
-        if (Vector3.Distance(_targetTrans.position, _obj.transform.position) < 2f)
+        if (Vector3.Distance(_targetTrans.position, _obj.transform.position) <= 2f)
         {
             _monsterFSM.ChangeStateByEnum(MonsterState.Attack);
         }
@@ -152,22 +157,28 @@ public class MonsterAttackMove : GameObjectFSMState
     }
     public override void OnExit()
     {
-        _obj.GetComponent<AggressiveMonster>().ResetAnimBool();
+
     }
 }
 public class MonsterDamage : GameObjectFSMState
 {
     FSM _fsm;
     MonsterFSM _monsterFSM;
+    Transform _targetTrans;
+    float _attackMoveSpeed;
     public MonsterDamage(GameObject obj) : base(obj) { }
     public override void OnEnter()
     {
         _fsm = _obj.GetComponent<FSM>();
+        _targetTrans = _fsm.GetTargetTrans();
+        _attackMoveSpeed = _fsm.GetAttackMoveSpeed();
         _fsm.StartAnim("Damage");
     }
     public override void DoLoop()
     {
-
+        _obj.transform.LookAt(_targetTrans);
+        _obj.transform.position += (_targetTrans.position - _obj.transform.position).normalized * _attackMoveSpeed * Time.deltaTime;
+        _fsm.StartAnim("AttackMove");
     }
     public override void OnExit()
     {
@@ -178,6 +189,7 @@ public class MonsterDie : GameObjectFSMState
 {
     FSM _fsm;
     MonsterFSM _monsterFSM;
+    [SerializeField] GameObject _dropItem;
     public MonsterDie(GameObject obj) : base(obj) { }
     public override void OnEnter()
     {
@@ -192,7 +204,7 @@ public class MonsterDie : GameObjectFSMState
     }
     public override void OnExit()
     {
-        GameObject.Destroy(_obj);
+        _obj.GetComponent<MonsterStat>().DropAndDestory();
     }
 }
 

@@ -25,11 +25,9 @@ public class GetItem : MonoBehaviour
         {
             if(hit.distance <= 3f)
             {
-                //Debug.DrawRay(transform.position, transform.forward * 5, Color.red, 5f);
-                //Debug.Log(hit.distance);
                 ItemData itemData = hit.collider.GetComponent<Item>().GetItem();
                 _data.Add(itemData);
-                Inventory.Instance.GetComponent<Inventory>().AddItem(itemData);
+                GenericSingleton<Inventory>.Instance.GetComponent<Inventory>().AddItem(itemData);
                 Destroy(hit.collider.gameObject);
             }
         }

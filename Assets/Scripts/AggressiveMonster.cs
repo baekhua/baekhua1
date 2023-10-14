@@ -10,12 +10,10 @@ public class AggressiveMonster : MonoBehaviour
 
     [SerializeField] float _speed = 0f;
     [SerializeField] Transform _player;
-    [SerializeField] Transform _monster;
     [SerializeField] Animator _wolf;
 
     int _damage = 60;
     float _lastHitTime = 0;
-    bool _animRunTime = false;
     List<Collider> _hitTargetList = new List<Collider>();
     private void Start()
     {
@@ -40,12 +38,18 @@ public class AggressiveMonster : MonoBehaviour
     public Transform GetTarget() => _player.transform;
     void FollowPlayer()
     {
-        Vector3 moveVector = (_player.position - _monster.position);
+        Vector3 moveVector = (_player.position - gameObject.transform.position);
         Vector3 dirVector = moveVector.normalized;
         Vector3 lastVector = dirVector * _speed;
-        _monster.position = _monster.position + lastVector * Time.deltaTime;
-
-        _monster.LookAt(_player);
+        if(Vector3.Distance(_player.position, gameObject.transform.position) >= 1f)
+        {
+            gameObject.transform.position = gameObject.transform.position + lastVector * Time.deltaTime;
+        }
+        else
+        {
+            return;
+        }
+        gameObject.transform.LookAt(_player);
     }
     private void OnDrawGizmos()
     {
@@ -78,13 +82,8 @@ public class AggressiveMonster : MonoBehaviour
                 float distance = Vector3.Distance(gameObject.transform.position, enemyColli.transform.position);
                 if(distance > 0.5f)
                 {
-                    _animRunTime = true;
                     FollowPlayer();
-                    if(!_animRunTime)
-                    {
-                        GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.AttackMove);
-                        Debug.Log("AttackMove ½ÇÇà !");
-                    }
+                    GetComponent<MonsterFSM>().ChangeStateByEnum(MonsterState.AttackMove);
                 }
             }
         }
@@ -93,10 +92,6 @@ public class AggressiveMonster : MonoBehaviour
     {
         float radian = angle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(radian), 0f, Mathf.Cos(radian));
-    }
-    public void ResetAnimBool()
-    {
-        _animRunTime = false;
     }
 }
 
