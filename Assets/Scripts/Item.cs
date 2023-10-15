@@ -1,21 +1,26 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : ItemDataManager
 {
-    [SerializeField] ItemType _type;
-    public ItemType Type { get { return _type; } }
-    ItemData _itemData;
-    private void Start()
+    string _name = "";
+    Sprite _sprite;
+    void Start()
     {
-
+        
     }
-    public void ItemInit(ItemData data)
+    public void Init(ItemData data)
     {
         _itemData = data;
-        gameObject.name = _itemData._name;
+        _name = data._name;
+        _sprite = data._sprite;
     }
-    public ItemData GetItem()
+    public void ItemEffect()
     {
-        return _itemData;
+        GenericSingleton<PlayerStat>.Instance.GetComponent<PlayerStat>().IncHp(20);
+        Invoke("DestroyItem", 0.01f);
+    }
+    void DestroyItem()
+    {
+        Destroy(gameObject);
     }
 }

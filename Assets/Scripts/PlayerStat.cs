@@ -9,6 +9,16 @@ public class PlayerStat : GenericSingleton<PlayerStat>
     private void Start()
     {
         _currentHp = _maxHp;
+        MouseLock();
+    }
+    public void MouseLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void IncHp(int recovery)
+    {
+        _currentHp += recovery;
     }
     public void MonsterAttack(int damage)
     {

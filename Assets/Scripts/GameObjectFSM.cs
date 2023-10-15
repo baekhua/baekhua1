@@ -47,7 +47,6 @@ public class MonsterIdle : GameObjectFSMState
         _timer = 0;
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
-        //_fsm.StartAnim("Idle");
     }
     public override void OnExit()
     {
@@ -77,10 +76,6 @@ public class MonsterPatrol : GameObjectFSMState
             _isEndPoint = true;
             _monsterFSM.ChangeStateByEnum(MonsterState.Idle);
         }
-        //if(Vector3.Distance(_targetTransform.position, _obj.transform.position) < 10)
-        //{
-        //    _monsterFSM.ChangeStateByEnum(MonsterState.AttackMove);
-        //}
     }
     public override void OnEnter()
     {
@@ -105,7 +100,6 @@ public class MonsterAttack : GameObjectFSMState
     public MonsterAttack(GameObject obj) : base(obj) { }
     public override void OnEnter()
     {
-        Debug.Log("MonsterAttack에 들어왔습니다.");
         _fsm = _obj.GetComponent<FSM>();
         _monsterFSM = _obj.GetComponent<MonsterFSM>();
         _target = _fsm.GetTargetTrans();
@@ -140,7 +134,6 @@ public class MonsterAttackMove : GameObjectFSMState
     }
     public override void DoLoop()
     {
-        //_obj.transform.position += (_targetTrans.position - _obj.transform.position).normalized * _attackMoveSpeed * Time.deltaTime;
         _fsm.StartAnim("AttackMove");
         CheckTransition();
     }

@@ -22,8 +22,11 @@ public class MonsterStat : MonoBehaviour
     }
     public void DropAndDestory()
     {
-        GameObject temp = Instantiate(_dropItem);
-        temp.transform.position = gameObject.transform.position;
+        //GameObject temp = Instantiate(_dropItem);
+        GameObject temp = GameObject.Find("LoadData");
+        GameObject temp2 = temp.GetComponent<ItemDataManager>().ItemSpawn();
+        Debug.Log(temp2.name);
+        temp2.transform.position = gameObject.transform.position;
         Destroy(gameObject);
     }
 }

@@ -13,6 +13,11 @@ public class UIManager : MonoBehaviour
             Cursor.visible = true;
             _cursorLock = true;
         }
+        if (_inventory.activeSelf == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
     public void OnInGameOption()
     {

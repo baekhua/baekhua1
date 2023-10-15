@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class DataLoad : MonoBehaviour
+public class DataSave : MonoBehaviour
 {
     [SerializeField] string _name;
-    [SerializeField] ItemType _type;
+    [SerializeField] EItemType _type;
     [SerializeField] Sprite _sprite;
     ItemDataList _dataList;
     private void Start()

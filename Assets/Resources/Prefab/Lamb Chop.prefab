@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8150994239902894333}
   - component: {fileID: 5094131405729154904}
   - component: {fileID: 7013523882761335698}
+  - component: {fileID: 5268134112530542516}
   - component: {fileID: 410860768204543850}
   - component: {fileID: -3245772948670613496}
   m_Layer: 0
@@ -85,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5268134112530542516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815223149354979911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e481ea842c1234a897af656d57914a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items: []
 --- !u!114 &410860768204543850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd11f70bb02a4145b12525cd658337a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 1
+  _itemData:
+    _name: WolfMeat
+    _type: 1
+    _sprite: {fileID: 21300000, guid: 8409bd433a091ae438f53f7d18213194, type: 3}
 --- !u!135 &-3245772948670613496
 SphereCollider:
   m_ObjectHideFlags: 0
